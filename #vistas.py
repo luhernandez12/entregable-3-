@@ -1,2 +1,1 @@
 #vistas 
-import matplotlip 
