@@ -35,7 +35,24 @@ class Paciente:
     def asignarId(self,i):
         self.__id=i
    
+class Sistema:
+    def __init__(self, nombre_db):  # Se establece como atributos el nombre de la base de datos, la conexión con la base y el cursor 
+        self.nombre_db = nombre_db
+        self.conexion = sqlite3.connect(self.nombre_db)
+        self.cursor = self.conexion.cursor()
+        self.login={}
+        
+        
 
+        # Crear la tabla Paciente si no existe
+        self.cursor.execute('''CREATE TABLE IF NOT EXISTS Paciente (
+            id INTEGER PRIMARY KEY,
+            nombre TEXT, 
+            apellido TEXT,  
+            edad INTEGER
+            )''')
+        self.conexion.commit()
+        self.cursor.close()
 
 
 
