@@ -53,6 +53,23 @@ class Sistema:
             )''')
         self.conexion.commit()
         self.cursor.close()
+    
+    def entrada(self, usuario, clave):  #login 
+        # Aquí estamos usando un diccionario para login con un ejemplo
+        self.login["user13"] = 123
+
+        # Verificar si la llave existe en el diccionario
+        if usuario in self.login:
+            # Verificar si la clave coincide con el valor asociado a la llave
+            if self.login[usuario] == clave:
+                print("Las credenciales son correctas.")
+                return True
+            else:
+                print("La clave es incorrecta.")
+                return False
+        else:
+            print("La llave no existe en el diccionario.")
+            return False
 
 
 
