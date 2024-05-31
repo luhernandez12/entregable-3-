@@ -58,10 +58,10 @@ class Sistema:
         self.cursor = self.conexion.cursor()
         # Crear la tabla Paciente si no existe
         self.cursor.execute('''CREATE TABLE IF NOT EXISTS Paciente (
-            id INTEGER PRIMARY KEY,
+            id TEXT PRIMARY KEY,
             nombre TEXT, 
             apellido TEXT,  
-            edad INTEGER
+            edad TEXT
             )''')
         self.conexion.commit()
         self.cursor.close()
@@ -134,15 +134,9 @@ class Sistema:
                 if self.cursor:
                     self.cursor.close()
 
-# l=LoginModelo()
-# d=l.existe("user1",123)
-# if d==1:
-#     s=Sistema("almacenamiento.db") 
-#     s.asignar_paciente("tania","quin",16,19)
-#     i=s.buscar_eliminar("Lu")
-#     print(i)
-#     o=int(input("Ingresar id de paciente a eliminar"))
-#     s.eliminar_paciente(o)
+# s=Sistema() 
+# s.asignar_paciente("maria","quin","11","19")
+
 
 
 

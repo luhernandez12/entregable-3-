@@ -41,7 +41,6 @@ class ventanaLogin(QMainWindow):
     def closeOption(self):
         self.close()
 
-
 class VentanaMenu(QDialog):
     def __init__(self,ppal=None):
         super().__init__(ppal)
@@ -94,32 +93,31 @@ class VentanaMenu(QDialog):
                 msgBox.setIcon(QMessageBox.information)
                 msgBox.setText("La id ya existe")
     
-    # def leer_pacientes(self):
-    #     self.listaPacientes = self.vetController.buscar_paciente()
-    # def filterPets(self):
-    #     buscar = self.buscar_paciente.text()
-        
-    #     self.tabla()
         
     def tabla(self):
         buscar_n=self.buscar_paciente.text()
-        self.listaPacientes = self.vetController.buscar_paciente(buscar_n)
-        self.tabla_eliminar.setRowCount(len(self.listaPacientes)) 
-        self.tabla_eliminar.setColumnCount(4) 
-        columnas = ["ID", "Nombre", "Apellido", "Edad"]
-        columnLayout = ['id','nombre','apellido','edad']
-        self.tabla_eliminar.setHorizontalHeaderLabels(columnas)
-        for row, pacientes in enumerate(self.listaPacientes):
-            for column in range(4):
-                item = QTableWidgetItem(pacientes[columnLayout[column]])
-                self.tabla_eliminar.setItem(row, column, item)
-        
-                
-        self.tabla_eliminar.setColumnWidth(0, 80)  
-        self.tabla_eliminar.setColumnWidth(1, 110)  
-        self.tabla_eliminar.setColumnWidth(2, 60)  
-        self.tabla_eliminar.setColumnWidth(3, 60)  
-    
+        if buscar_n!=None:
+            self.listaPacientes = self.vetController.buscar_paciente(buscar_n)
+            self.tabla_eliminar.setRowCount(len(self.listaPacientes)) 
+            self.tabla_eliminar.setColumnCount(4) 
+            columnas = ["ID", "Nombre", "Apellido", "Edad"]
+            columnLayout = ['id','nombre','apellido','edad']
+            self.tabla_eliminar.setHorizontalHeaderLabels(columnas)
+            for row, pacientes in enumerate(self.listaPacientes):
+                for column in range(4):
+                    item = QTableWidgetItem(pacientes[columnLayout[column]])
+                    self.tabla_eliminar.setItem(row, column, item)
+            
+                    
+            self.tabla_eliminar.setColumnWidth(0, 80)  
+            self.tabla_eliminar.setColumnWidth(1, 110)  
+            self.tabla_eliminar.setColumnWidth(2, 60)  
+            self.tabla_eliminar.setColumnWidth(3, 60)  
+        else:
+            msgBox = QMessageBox()
+            msgBox.setIcon(QMessageBox.information)
+            msgBox.setText("No existen personas con este nombre ")
+
     def eliminar_pac(self):
         iden=self.id_eliminar.text()
         r=self.vetController.eliminar_pac(iden)
@@ -139,9 +137,6 @@ class VentanaMenu(QDialog):
     
 
 app=QApplication(sys.argv)
-
-mi_vista2=VentanaMenu()
+mi_vista2=ventanaLogin()
 mi_vista2.show()
-
-
 sys.exit(app.exec())

@@ -1,14 +1,14 @@
 [
     {
-        "usuario":"user1",
+        "usuario":"user",
         "password":123
     },
     {
-        "usuario":"user2",
+        "usuario":"userdos",
         "password":124
     },
     {
-        "usuario":"user3",
+        "usuario":"usertres",
         "password":125
     }
 ]
