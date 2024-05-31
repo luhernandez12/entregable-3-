@@ -97,6 +97,9 @@ class Sistema:
         else:
             print(f"Paciente con la cédula {p.verId()} ya existe en la base de datos")
             self.cursor.close()
+    
+    def eliminar(self):
+        pass
 
 p = Sistema('almacenamiento.db')
 usuario = input("Ingrese la llave (nombre de usuario): ")

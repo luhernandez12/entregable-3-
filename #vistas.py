@@ -79,7 +79,26 @@ class VentanaMenu(QMainWindow):
     def setControlador(self,c):
         self.__miCoordinador = c
 
+class VentanaAgregar():
+    def __init__(self,ppal=None):
+        super().__init__(ppal)
+        loadUi("ventana_agregar.ui",self)
+        self.__ventanaPadre=ppal
+        self.setup()
 
+class VentanaEliminar():
+    def __init__(self,ppal=None):
+        super().__init__(ppal)
+        loadUi("ventana_eliminar.ui",self)
+        self.__ventanaPadre=ppal
+        self.setup()
+
+class VentanaBuscar():
+    def __init__(self,ppal=None):
+        super().__init__(ppal)
+        loadUi("ventana_agregar.ui",self)
+        self.__ventanaPadre=ppal
+        self.setup()
         
     
         
