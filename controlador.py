@@ -12,11 +12,11 @@ class sistema_controlador:
     def __init__(self, model = Sistema()):
         self.model = model
 
-    def newPet(self, data:dict):
-        return self.vet_model.add_pet(data)
+    def asignar_paciente(self,n,a,e,i):
+        return self.model.asignar_paciente(n,a,i,e)
     
-    def getPets(self, initName:str = ''):
-        return self.vet_model.search_pets(initName)
+    def buscar_paciente(self, nombre):
+        return self.model.buscar_eliminar(nombre)
     
     def delPets(self, id:str):
         return self.vet_model.delete_pet(id)

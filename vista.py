@@ -52,17 +52,60 @@ class VentanaMenu(QDialog):
     def setup(self):
         self.menu_agregar.clicked.connect(self.abrir_ventana_ingresar)
         self.menu_eliminar.clicked.connect(self.abrir_ventana_eliminar)
-        self.menu_salir.clicked.connect(self.abrir_ventana_login)
+        self.menu_salir.clicked.connect(self.abrir_ventana_logout)
+        self.boton_agregar.clicked.connect(self.agregar_paciente)
+        self.boton_buscar.clicked.connect(self.tabla)
+    
 
     def abrir_ventana_ingresar(self):
         ventana_ingresar=self.stackedWidget.setCurrentIndex(1)
-
     def abrir_ventana_eliminar(self):
         ventana_eliminar= self.stackedWidget.setCurrentIndex(2) 
     def abrir_ventana_logout(self):
         self.ventanaL=ventanaLogin()
         self.ventanaL.show()
         self.close()
+    
+    def agregar_paciente(self):
+        iden = self.id.text()
+        nombre = self.nombre.text()
+        edad = self.edad.text()
+        apellido = self.apellido.text()
+        if not iden or not nombre or not apellido or not edad:
+            msgBox = QMessageBox()
+            msgBox.setIcon(QMessageBox.Warning)
+            msgBox.setText("Debe ingresar todos los datos")
+            msgBox.setWindowTitle('Datos faltantes')
+            msgBox.setStandardButtons(QMessageBox.Ok)
+            msgBox.exec()
+        else:
+            isUnique = self.vetController.asignar_paciente(nombre,apellido,edad,iden)
+            if not isUnique:
+                msgBox = QMessageBox()
+                msgBox.setIcon(QMessageBox.Warning)
+                msgBox.setText("La id ya existe")
+                msgBox.setWindowTitle('Id repetida')
+                msgBox.setStandardButtons(QMessageBox.Ok)
+                msgBox.exec()
+            else:
+                msgBox = QMessageBox()
+                msgBox.setIcon(QMessageBox.information)
+                msgBox.setText("La id ya existe")
+   
+    def tabla(self):
+        nombre=self.buscar_paciente.text()
+        lista_datos=self.vetController.buscar_paciente(nombre)
+        self.tabla_eliminar.setColumnCount(len(lista_datos[0]))
+        headers = list(lista_datos[0].keys())
+        self.tabla_eliminar.setHorizontalHeaderLabels(headers)
+
+        for i, fila in enumerate(lista_datos):
+            for j, valor in enumerate(fila.values()):
+                item =self.tabla_eliminar(str(valor))
+                self.tabla_eliminar.setItem(i, j, item)
+    
+
+    
 
        
     

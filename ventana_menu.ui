@@ -113,7 +113,7 @@ background-color: rgb(170, 170, 255);</string>
           <string notr="true">background-color: rgb(255, 255, 255);</string>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="page"/>
          <widget class="QWidget" name="pagina_agregar">
@@ -131,7 +131,7 @@ background-color: rgb(170, 170, 255);</string>
            <item row="0" column="1">
             <widget class="QLineEdit" name="nombre">
              <property name="styleSheet">
-              <string notr="true">color: rgb(255, 255, 255);
+              <string notr="true">
 background-color: rgb(255, 255, 255);</string>
              </property>
             </widget>
@@ -146,7 +146,7 @@ background-color: rgb(255, 255, 255);</string>
            <item row="1" column="1">
             <widget class="QLineEdit" name="apellido">
              <property name="styleSheet">
-              <string notr="true">color: rgb(255, 255, 255);
+              <string notr="true">
 background-color: rgb(255, 255, 255);</string>
              </property>
             </widget>
@@ -161,7 +161,7 @@ background-color: rgb(255, 255, 255);</string>
            <item row="2" column="1">
             <widget class="QLineEdit" name="id">
              <property name="styleSheet">
-              <string notr="true">color: rgb(255, 255, 255);
+              <string notr="true">
 background-color: rgb(255, 255, 255);</string>
              </property>
             </widget>
@@ -176,7 +176,7 @@ background-color: rgb(255, 255, 255);</string>
            <item row="3" column="1">
             <widget class="QLineEdit" name="edad">
              <property name="styleSheet">
-              <string notr="true">color: rgb(255, 255, 255);
+              <string notr="true">
 background-color: rgb(255, 255, 255);</string>
              </property>
             </widget>
@@ -194,7 +194,7 @@ background-color: rgb(255, 255, 255);</string>
           <property name="styleSheet">
            <string notr="true">background-color: rgb(170, 170, 255);</string>
           </property>
-          <widget class="QTableWidget" name="table_eliminar">
+          <widget class="QTableWidget" name="tabla_eliminar">
            <property name="geometry">
             <rect>
              <x>10</x>
@@ -203,26 +203,6 @@ background-color: rgb(255, 255, 255);</string>
              <height>221</height>
             </rect>
            </property>
-           <column>
-            <property name="text">
-             <string>Nombre</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>Apellido</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>Id</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>Edad</string>
-            </property>
-           </column>
           </widget>
           <widget class="QWidget" name="formLayoutWidget">
            <property name="geometry">
@@ -249,7 +229,7 @@ background-color: rgb(255, 255, 255);</string>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_2">
+             <widget class="QPushButton" name="boton_buscar">
               <property name="text">
                <string>Buscar</string>
               </property>
