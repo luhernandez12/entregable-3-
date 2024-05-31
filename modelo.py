@@ -88,6 +88,7 @@ class Sistema:
             self.cursor.execute(query_insert, parametros)  # Se relaciona el query_insert con la tupla de parámetros del paciente
             self.conexion.commit()
             self.cursor.close()
+            return True 
             print(f"Paciente con la cédula {p.verId()} agregado a la base de datos")  # Retorno de mensaje para verificar en consola la ejecución del código 
         else:
                 print(f"Paciente con la cédula {p.verId()} ya existe en la base de datos")

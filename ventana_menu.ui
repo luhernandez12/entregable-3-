@@ -48,43 +48,6 @@
      <number>0</number>
     </property>
     <item>
-     <widget class="QFrame" name="frame_4">
-      <property name="styleSheet">
-       <string notr="true">
-background-color: rgb(255, 255, 255);</string>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_2">
-       <item>
-        <widget class="QPushButton" name="menu_agregar">
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(170, 170, 255);</string>
-         </property>
-         <property name="text">
-          <string>Agregar</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="menu_eliminar">
-         <property name="styleSheet">
-          <string notr="true">
-background-color: rgb(170, 170, 255);</string>
-         </property>
-         <property name="text">
-          <string>Eliminar </string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
-    <item>
      <widget class="QFrame" name="frame_paginas">
       <property name="styleSheet">
        <string notr="true">background-color: rgb(255, 255, 255);</string>
@@ -167,7 +130,7 @@ background-color: rgb(255, 255, 255);</string>
             </widget>
            </item>
            <item row="4" column="1">
-            <widget class="QPushButton" name="Boton_agregar">
+            <widget class="QPushButton" name="boton_agregar">
              <property name="text">
               <string>Agregar</string>
              </property>
@@ -184,7 +147,7 @@ background-color: rgb(255, 255, 255);</string>
             <rect>
              <x>10</x>
              <y>50</y>
-             <width>421</width>
+             <width>511</width>
              <height>221</height>
             </rect>
            </property>
@@ -209,25 +172,12 @@ background-color: rgb(255, 255, 255);</string>
             </property>
            </column>
           </widget>
-          <widget class="QPushButton" name="boton_eliminar">
-           <property name="geometry">
-            <rect>
-             <x>9</x>
-             <y>288</y>
-             <width>75</width>
-             <height>23</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>Eliminar</string>
-           </property>
-          </widget>
           <widget class="QWidget" name="formLayoutWidget">
            <property name="geometry">
             <rect>
              <x>20</x>
              <y>10</y>
-             <width>381</width>
+             <width>461</width>
              <height>31</height>
             </rect>
            </property>
@@ -250,6 +200,39 @@ background-color: rgb(255, 255, 255);</string>
              <widget class="QPushButton" name="pushButton_2">
               <property name="text">
                <string>Buscar</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="horizontalLayoutWidget">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>280</y>
+             <width>501</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <item>
+             <widget class="QLabel" name="label_5">
+              <property name="text">
+               <string>Ingrese el ID del paciente a eliminar</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="id_eliminar">
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(255, 255, 255);</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="eliminar">
+              <property name="text">
+               <string>Eliminar</string>
               </property>
              </widget>
             </item>
