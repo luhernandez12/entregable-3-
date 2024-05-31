@@ -7,11 +7,11 @@ from PyQt5.QtCore import Qt,QRegExp
 from PyQt5.uic import loadUi
 
 
-class ventanaPrincipal(QMainWindow):
+class ventanaLogin(QMainWindow):
     def __init__(self):
         super().__init__()
         loadUi("ventana_ingreso.ui",self)
-        self.userControler=userController()
+        self.userControler=login_controlador()
         self.usuario.setValidator(QRegExpValidator(QRegExp("[a-zA-Z ]+")))
         self.password.setValidator(QIntValidator())
         self.setup()
@@ -21,29 +21,25 @@ class ventanaPrincipal(QMainWindow):
         self.boton_ingresar.clicked.connect(self.validardatos)
         self.boton_salir.clicked.connect(self.closeOption)
 
-    def setCoordinador(self,c):
-        self.__coordinador = c
-
     def validardatos(self):
-        pass
         username = self.usuario.text()
         password = self.password.text()
-        return username, password
-        if verificar:
-            
-            self.hide()
-            self.newWindow = Vista()
-            self.newWindow.setCoordinador(self.__coordinador)
-            self.newWindow.show()
-    
-        else:
-            QMessageBox.warning(self, "Error de inicio de sesión", "Usuario o contraseña incorrectos.")
+        existe = self.userController.log_in(usuario, password)
+        if isinstance(existe, tuple):
+            self.vetView = VentanaMenu()
+            self.vetView.show()
+            self.close()
+        elif existe == 0:
+            msgBox = QMessageBox()
+            msgBox.setIcon(QMessageBox.Warning)
+            msgBox.setText("No existe un usuario con los \ndatos proporcionados")
+            msgBox.setWindowTitle('Datos incorrectos')
+            msgBox.setStandardButtons(QMessageBox.Ok)
+            msgBox.exec()
 
     def closeOption(self):
         self.close()
 
-    def recibir_info(self,n,r,f,c,e):
-            self.__miCoordinador.recibir_info(n,r,f,c,e)
 
 class VentanaMenu(QDialog):
     def __init__(self,ppal=None):

@@ -1,6 +1,14 @@
 from vista import* 
 from modelo import* 
 
+class login_controlador:
+    def __init__(self, login_model:object = LoginModelo()):
+        self.user_model = login_model_model
+        
+    def log_in(self, username:str, password:str):
+        result = self.user_model.exists(username, password)
+        return result
+
 class Coordinador:
     def __init__(self,vista,modelo):
         self.__miVista = vista
