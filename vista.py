@@ -8,14 +8,16 @@ from PyQt5.uic import loadUi
 
 
 class ventanaPrincipal(QMainWindow):
-    def __init__(self,ppal=None):
-        super().__init__(ppal)
+    def __init__(self):
+        super().__init__()
         loadUi("ventana_ingreso.ui",self)
+        self.userControler=userController()
+        self.usuario.setValidator(QRegExpValidator(QRegExp("[a-zA-Z ]+")))
+        self.password.setValidator(QIntValidator())
         self.setup()
 
     def setup(self):
-        self.usuario.setValidator(QRegExpValidator(QRegExp("[a-zA-Z ]+")))
-        self.password.setValidator(QIntValidator())
+        
         self.boton_ingresar.clicked.connect(self.validardatos)
         self.boton_salir.clicked.connect(self.closeOption)
 
@@ -72,20 +74,4 @@ class VentanaMenu(QDialog):
 
     def setControlador(self,c):
         self.__miCoordinador = c
-
-class VentanaAgregar(QDialog):
-    def __init__(self,ppal=None):
-        super().__init__(ppal)
-        loadUi("ventana_agregar.ui",self)
-        self.__ventanaPadre=ppal
-        self.setup()
-
-class VentanaEliminar(QDialog):
-    def __init__(self,ppal=None):
-        super().__init__(ppal)
-        loadUi("ventana_eliminar.ui",self)
-        self.__ventanaPadre=ppal
-        self.setup()
-
-
 

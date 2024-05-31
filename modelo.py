@@ -30,7 +30,7 @@ class Paciente:
     def asignarId(self,i):
         self.__id=i
 
-class Login():
+class LoginModelo():
     def __init__(self,user="usuarios.json"):
         self.user=user
         self.load()
@@ -51,16 +51,11 @@ class Login():
                 return 2
 
 
-   
 class Sistema:
     def __init__(self, nombre_db):  # Se establece como atributos el nombre de la base de datos, la conexión con la base y el cursor 
         self.nombre_db = nombre_db
         self.conexion = sqlite3.connect(self.nombre_db)
         self.cursor = self.conexion.cursor()
-        self.login={}
-        
-        
-
         # Crear la tabla Paciente si no existe
         self.cursor.execute('''CREATE TABLE IF NOT EXISTS Paciente (
             id INTEGER PRIMARY KEY,
@@ -70,19 +65,18 @@ class Sistema:
             )''')
         self.conexion.commit()
         self.cursor.close()
+       
 
-    
     def asignar_paciente(self,n, a, i, e):  # Se establecen estos parámetros que vendrán ligados con el controlador y la vista 
-        self.cursor = self.conexion.cursor()
-        if not self.conexion:  # Verificar inicialmente si se conectó correctamente a la base de datos 
-            print("No hay conexión a la base de datos")
-            return 
         p = Paciente()  # Se crea objeto paciente para luego usar los métodos de asignación de atributos 
         p.asignarNombre(n)
         p.asignarApellido(a)
         p.asignarId(i)
         p.asignarEdad(e)
-        
+        self.cursor = self.conexion.cursor()
+        if not self.conexion:  # Verificar inicialmente si se conectó correctamente a la base de datos 
+            print("No hay conexión a la base de datos")
+            return 
         query_check = "SELECT * FROM Paciente WHERE id = ?"  # Se identifica el parámetro por el cual se va a buscar el paciente 
         self.cursor.execute(query_check, (p.verId(),))  # Se usa el método ver_cedula de la clase paciente para verificar si el paciente que se quiere ingresar aún no está en la base de datos
         if self.cursor.fetchone() is None:  # Si no se encuentra entonces se usa condicional para agregar paciente 
@@ -99,35 +93,55 @@ class Sistema:
                 print(f"Paciente con la cédula {p.verId()} ya existe en la base de datos")
                 self.cursor.close()
         
-        # def buscar_pacientes(self, nombre):
-        
-        #     self.cursor = self.conexion.cursor()
-        #     if not self.conexion:  # Verificar inicialmente si se conectó correctamente a la base de datos 
-        #         print("No hay conexión a la base de datos")
-        #         return 
-        #     query_search = "SELECT * FROM Paciente WHERE LOWER(nombre) LIKE ?"
-        #     self.cursor.execute(query_search, (f'{nombre.lower()}%',))
-        #     resultados = self.cursor.fetchall()
-        #     lista_pacientes = []
-        #     for paciente in resultados:
-        #         paciente_dict = {
-        #             "id": paciente[0],
-        #             "nombre": paciente[1],
-        #             "apellido": paciente[2],
-        #             "edad": paciente[3]
-        #         }
-        #         lista_pacientes.append(paciente_dict)
-        #     return lista_pacientes 
+    def buscar_eliminar(self, nombre):
+    
+        self.cursor = self.conexion.cursor()
+        if not self.conexion:  # Verificar inicialmente si se conectó correctamente a la base de datos 
+            print("No hay conexión a la base de datos")
+            return 
+        query_search = "SELECT * FROM Paciente WHERE LOWER(nombre) LIKE ?"
+        self.cursor.execute(query_search, (f'{nombre.lower()}%',))
+        resultados = self.cursor.fetchall()
+        lista_pacientes = []
+        for paciente in resultados:
+            paciente_dict = {
+                "id": paciente[0],
+                "nombre": paciente[1],
+                "apellido": paciente[2],
+                "edad": paciente[3]
+            }
+            lista_pacientes.append(paciente_dict)
+        return lista_pacientes 
+    
+    def eliminar_paciente(self, cedula):
+            if not self.conexion:   
+                print("No hay conexión a la base de datos")
+                return 
 
-# p = Sistema('almacenamiento.db')
-# usuario = input("Ingrese la llave (nombre de usuario): ")
-# contraseña = int(input("Ingrese la clave (contraseña): "))
+            try:
+                self.cursor = self.conexion.cursor()
+                query_delete = "DELETE FROM Paciente WHERE id = ?"
+                self.cursor.execute(query_delete, (cedula,))
+                self.conexion.commit()
+                self.cursor.close()
+                print(f"Paciente con cédula {cedula} eliminado exitosamente.")
+            except sqlite3.Error as e:
+                print(f"Error al eliminar el paciente: {e}")
+                self.conexion.rollback()
+            finally:
+                if self.cursor:
+                    self.cursor.close()
 
-# # Llamar al método de instancia login
-# # if p.entrada(usuario, contraseña):
-# #     p.asignar_paciente("Luisa", "quintero", 190, 20)
+l=LoginModelo()
+d=l.existe("user1",123)
+if d==1:
+    s=Sistema("almacenamiento.db") 
+    s.asignar_paciente("lu","quin",1086,19)
+    i=s.buscar_eliminar("Lu")
+    print(i)
+    o=int(input("Ingresar id de paciente a eliminar"))
+    s.eliminar_paciente(o)
 
-# print(p.buscar_pacientes("Luisa"))
 
 
 
