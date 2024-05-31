@@ -56,7 +56,7 @@ class Sistema:
     
     def entrada(self, usuario, clave):  #login 
         # Aquí estamos usando un diccionario para login con un ejemplo
-        self.login["user13"] = 123
+        self.login["user"] = 123
 
         # Verificar si la llave existe en el diccionario
         if usuario in self.login:
@@ -71,43 +71,64 @@ class Sistema:
             print("La llave no existe en el diccionario.")
             return False
     
-    def asignar_paciente(self,n, a, i, e):  # Se establecen estos parámetros que vendrán ligados con el controlador y la vista 
-        self.cursor = self.conexion.cursor()
-        if not self.conexion:  # Verificar inicialmente si se conectó correctamente a la base de datos 
-            print("No hay conexión a la base de datos")
-            return 
-        p = Paciente()  # Se crea objeto paciente para luego usar los métodos de asignación de atributos 
-        p.asignarNombre(n)
-        p.asignarApellido(a)
-        p.asignarId(i)
-        p.asignarEdad(e)
+    if entrada==True: 
+        def asignar_paciente(self,n, a, i, e):  # Se establecen estos parámetros que vendrán ligados con el controlador y la vista 
+            self.cursor = self.conexion.cursor()
+            if not self.conexion:  # Verificar inicialmente si se conectó correctamente a la base de datos 
+                print("No hay conexión a la base de datos")
+                return 
+            p = Paciente()  # Se crea objeto paciente para luego usar los métodos de asignación de atributos 
+            p.asignarNombre(n)
+            p.asignarApellido(a)
+            p.asignarId(i)
+            p.asignarEdad(e)
+            
+            query_check = "SELECT * FROM Paciente WHERE id = ?"  # Se identifica el parámetro por el cual se va a buscar el paciente 
+            self.cursor.execute(query_check, (p.verId(),))  # Se usa el método ver_cedula de la clase paciente para verificar si el paciente que se quiere ingresar aún no está en la base de datos
+            if self.cursor.fetchone() is None:  # Si no se encuentra entonces se usa condicional para agregar paciente 
+                query_insert = '''                
+                INSERT INTO Paciente ( nombre, apellido, id, edad)
+                VALUES ( ?, ?, ?, ?)
+                '''  # Se hace la identificación de parámetros en la tabla de la base de datos Paciente 
+                parametros = (p.verNombre(),p.verApellido(), p.verId(),p.verEdad())
+                self.cursor.execute(query_insert, parametros)  # Se relaciona el query_insert con la tupla de parámetros del paciente
+                self.conexion.commit()
+                self.cursor.close()
+                print(f"Paciente con la cédula {p.verId()} agregado a la base de datos")  # Retorno de mensaje para verificar en consola la ejecución del código 
+            else:
+                print(f"Paciente con la cédula {p.verId()} ya existe en la base de datos")
+                self.cursor.close()
         
-        query_check = "SELECT * FROM Paciente WHERE id = ?"  # Se identifica el parámetro por el cual se va a buscar el paciente 
-        self.cursor.execute(query_check, (p.verId(),))  # Se usa el método ver_cedula de la clase paciente para verificar si el paciente que se quiere ingresar aún no está en la base de datos
-        if self.cursor.fetchone() is None:  # Si no se encuentra entonces se usa condicional para agregar paciente 
-            query_insert = '''                
-            INSERT INTO Paciente ( nombre, apellido, id, edad)
-            VALUES ( ?, ?, ?, ?)
-            '''  # Se hace la identificación de parámetros en la tabla de la base de datos Paciente 
-            parametros = (p.verNombre(),p.verApellido(), p.verId(),p.verEdad())
-            self.cursor.execute(query_insert, parametros)  # Se relaciona el query_insert con la tupla de parámetros del paciente
-            self.conexion.commit()
-            self.cursor.close()
-            print(f"Paciente con la cédula {p.verId()} agregado a la base de datos")  # Retorno de mensaje para verificar en consola la ejecución del código 
-        else:
-            print(f"Paciente con la cédula {p.verId()} ya existe en la base de datos")
-            self.cursor.close()
-    
-    def eliminar(self):
-        pass
+        # def buscar_pacientes(self, nombre):
+        
+        #     self.cursor = self.conexion.cursor()
+        #     if not self.conexion:  # Verificar inicialmente si se conectó correctamente a la base de datos 
+        #         print("No hay conexión a la base de datos")
+        #         return 
+        #     query_search = "SELECT * FROM Paciente WHERE LOWER(nombre) LIKE ?"
+        #     self.cursor.execute(query_search, (f'{nombre.lower()}%',))
+        #     resultados = self.cursor.fetchall()
+        #     lista_pacientes = []
+        #     for paciente in resultados:
+        #         paciente_dict = {
+        #             "id": paciente[0],
+        #             "nombre": paciente[1],
+        #             "apellido": paciente[2],
+        #             "edad": paciente[3]
+        #         }
+        #         lista_pacientes.append(paciente_dict)
+        #     return lista_pacientes 
 
-p = Sistema('almacenamiento.db')
-usuario = input("Ingrese la llave (nombre de usuario): ")
-contraseña = int(input("Ingrese la clave (contraseña): "))
+# p = Sistema('almacenamiento.db')
+# usuario = input("Ingrese la llave (nombre de usuario): ")
+# contraseña = int(input("Ingrese la clave (contraseña): "))
 
-# Llamar al método de instancia login
-if p.entrada(usuario, contraseña):
-    p.asignar_paciente("luisa", "quintero", 199, 20)
+# # Llamar al método de instancia login
+# # if p.entrada(usuario, contraseña):
+# #     p.asignar_paciente("Luisa", "quintero", 190, 20)
+
+# print(p.buscar_pacientes("Luisa"))
+
 
 
 
