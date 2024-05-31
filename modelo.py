@@ -132,15 +132,15 @@ class Sistema:
                 if self.cursor:
                     self.cursor.close()
 
-l=LoginModelo()
-d=l.existe("user1",123)
-if d==1:
-    s=Sistema("almacenamiento.db") 
-    s.asignar_paciente("lu","quin",1086,19)
-    i=s.buscar_eliminar("Lu")
-    print(i)
-    o=int(input("Ingresar id de paciente a eliminar"))
-    s.eliminar_paciente(o)
+# l=LoginModelo()
+# d=l.existe("user1",123)
+# if d==1:
+#     s=Sistema("almacenamiento.db") 
+#     s.asignar_paciente("lu","quin",1086,19)
+#     i=s.buscar_eliminar("Lu")
+#     print(i)
+#     o=int(input("Ingresar id de paciente a eliminar"))
+#     s.eliminar_paciente(o)
 
 
 
