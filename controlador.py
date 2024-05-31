@@ -18,8 +18,8 @@ class sistema_controlador:
     def buscar_paciente(self, nombre):
         return self.model.buscar_eliminar(nombre)
     
-    def delPets(self, id:str):
-        return self.vet_model.delete_pet(id)
+    def eliminar_pac(self, id):
+        return self.model.eliminar_paciente(id)
 
 
 

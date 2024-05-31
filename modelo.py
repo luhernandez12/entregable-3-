@@ -126,6 +126,7 @@ class Sistema:
                 self.conexion.commit()
                 self.cursor.close()
                 print(f"Paciente con cédula {cedula} eliminado exitosamente.")
+                return True
             except sqlite3.Error as e:
                 print(f"Error al eliminar el paciente: {e}")
                 self.conexion.rollback()

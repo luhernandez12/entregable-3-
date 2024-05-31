@@ -55,6 +55,7 @@ class VentanaMenu(QDialog):
         self.menu_salir.clicked.connect(self.abrir_ventana_logout)
         self.boton_agregar.clicked.connect(self.agregar_paciente)
         self.boton_buscar.clicked.connect(self.tabla)
+        self.boton_eliminar.clicked.connect(self.eliminar_pac)
     
 
     def abrir_ventana_ingresar(self):
@@ -91,18 +92,41 @@ class VentanaMenu(QDialog):
                 msgBox = QMessageBox()
                 msgBox.setIcon(QMessageBox.information)
                 msgBox.setText("La id ya existe")
-   
-    def tabla(self):
-        nombre=self.buscar_paciente.text()
-        lista_datos=self.vetController.buscar_paciente(nombre)
-        self.tabla_eliminar.setColumnCount(len(lista_datos[0]))
-        headers = list(lista_datos[0].keys())
-        self.tabla_eliminar.setHorizontalHeaderLabels(headers)
+    
+    def leer_pacientes(self):
+        self.listaPacientes = self.vetController.buscar_paciente()
+    def filterPets(self):
+        buscar = self.buscar_paciente.text()
+        self.listaPacientes = self.vetController.buscar_paciente(buscar)
+        self.tabla()
+        
+    def tableUpdate(self):
+        self.tabla_eliminar.setRowCount(len(self.listaPacientes)) 
+        self.tabla_eliminar.setColumnCount(5) 
+        columnas = ["ID", "Nombre", "Apellido", "Edad"]
+        columnLayout = ['id','nombre','apellido','edad']
+        self.tabla_eliminar.setHorizontalHeaderLabels(columnas)
+        for row, pacientes in enumerate(self.listaPacientes):
+            for column in range(4):
+                item = QTableWidgetItem(pacientes[columnLayout[column]])
+                self.tabla_eliminar.setItem(row, column, item)
+        
+                
+        self.tabla_eliminar.setColumnWidth(0, 80)  
+        self.tabla_eliminar.setColumnWidth(1, 110)  
+        self.tabla_eliminar.setColumnWidth(2, 60)  
+        self.tabla_eliminar.setColumnWidth(3, 60)  
+    
+    def eliminar_pac(self):
+        iden=self.id_eliminar.text()
+        r=self.vetController.eliminar_pac(iden)
+        if r==True:
+            msgBox = QMessageBox()
+            msgBox.setIcon(QMessageBox.information)
+            msgBox.setText("Se elimino conrrectamente ")
 
-        for i, fila in enumerate(lista_datos):
-            for j, valor in enumerate(fila.values()):
-                item =self.tabla_eliminar(str(valor))
-                self.tabla_eliminar.setItem(i, j, item)
+
+
     
 
     

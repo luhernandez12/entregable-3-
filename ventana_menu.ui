@@ -113,7 +113,7 @@ background-color: rgb(170, 170, 255);</string>
           <string notr="true">background-color: rgb(255, 255, 255);</string>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="page"/>
          <widget class="QWidget" name="pagina_agregar">
@@ -262,7 +262,7 @@ background-color: rgb(255, 255, 255);</string>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="eliminar">
+             <widget class="QPushButton" name="boton_eliminar">
               <property name="text">
                <string>Eliminar</string>
               </property>
