@@ -36,12 +36,57 @@ class ventanaPrincipal(QMainWindow):
     
         else:
             QMessageBox.warning(self, "Error de inicio de sesión", "Usuario o contraseña incorrectos.")
+
     def closeOption(self):
         self.close()
+
+    def recibir_info(self,n,r,f,c,e):
+            self.__miCoordinador.recibir_info(n,r,f,c,e)
+
+class VentanaMenu(QMainWindow):
+    def __init__(self,ppal=None):
+        super().__init__(ppal)
+        loadUi("ventana_menu.ui",self)
+        self.__ventanaPadre=ppal
+        self.setup()
+
+    def setup(self):
+        self.ingresar_pac.clicked.connect(self.abrir_ventana_ingresar)
+        self.eliminar_pac.clicked.connect(self.abrir_ventana_eliminar)
+        self.buscar_pac.clicked.connect(self.abrir_ventana_buscar)
+        self.salida.clicked.connect(self.abrir_ventana_principal)
+    
+    def abrir_ventana_ingresar(self):
+        ventana_ingresar= VentanaIngreso(self)
+        self.hide()
+        ventana_ingresar.show()
+    
+    def abrir_ventana_eliminar(self):
+        ventana_eliminar= VentanaEliminar(self)
+        self.hide()
+        ventana_eliminar.show()
+    
+    def abrir_ventana_buscar(self):
+        ventana_buscar= VentanaBuscar(self)
+        self.hide()
+        ventana_buscar.show()
+    
+    def abrir_ventana_principal(self):
+        ventana_principal= VentanaMenu(self)
+        self.hide()
+        ventana_buscar.show()
+
+    def setControlador(self,c):
+        self.__miCoordinador = c
+
+
+        
+    
+        
 
 
 
 app=QApplication(sys.argv)
-vista=ventanaPrincipal()
+vista=VentanaMenu()
 vista.show()
 sys.exit(app.exec_())
