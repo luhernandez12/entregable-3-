@@ -50,29 +50,23 @@ class VentanaMenu(QDialog):
         self.setup()
 
     def setup(self):
-        self.ingresar_pac.clicked.connect(self.abrir_ventana_ingresar)
-        self.eliminar_pac.clicked.connect(self.abrir_ventana_eliminar)
-        self.salida.clicked.connect(self.abrir_ventana_principal)
-    
+        self.menu_agregar.clicked.connect(self.abrir_ventana_ingresar)
+        self.menu_eliminar.clicked.connect(self.abrir_ventana_eliminar)
+        self.menu_salir.clicked.connect(self.abrir_ventana_login)
+
     def abrir_ventana_ingresar(self):
-        ventana_ingresar= VentanaIngreso(self)
-        self.hide()
-        ventana_ingresar.show()
-    
+        ventana_ingresar=self.stackedWidget.setCurrentIndex(0)  
     def abrir_ventana_eliminar(self):
-        ventana_eliminar= VentanaEliminar(self)
-        self.hide()
-        ventana_eliminar.show()
+        ventana_eliminar= self.stackedWidget.setCurrentIndex(1) 
+    def abrir_ventana_login(self):
+        ventana_login=ventanaLogin()
+        ventana_login.show()
+       
     
-    def abrir_ventana_principal(self):
-        ventana_principal= VentanaMenu(self)
-        self.hide()
-        ventana_buscar.show()
+    
 
-    def setControlador(self,c):
-        self.__miCoordinador = c
+app=QApplication(sys.argv)
+mi_vista=VentanaMenu()
+mi_vista.show()
 
-# app=QApplication(sys.argv)
-# mi_vista=ventanaLogin()
-# mi_vista.show()
-# sys.exit(app.exec())
+sys.exit(app.exec())

@@ -81,6 +81,17 @@ background-color: rgb(170, 170, 255);</string>
          </property>
         </widget>
        </item>
+       <item>
+        <widget class="QPushButton" name="menu_salir">
+         <property name="styleSheet">
+          <string notr="true">
+background-color: rgb(170, 170, 255);</string>
+         </property>
+         <property name="text">
+          <string>Log out </string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
     </item>
@@ -99,7 +110,7 @@ background-color: rgb(170, 170, 255);</string>
        <item>
         <widget class="QStackedWidget" name="stackedWidget">
          <property name="currentIndex">
-          <number>1</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="pagina_agregar">
           <property name="styleSheet">

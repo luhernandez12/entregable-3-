@@ -52,7 +52,7 @@ class LoginModelo():
 
 
 class Sistema:
-    def __init__(self, nombre_db):  # Se establece como atributos el nombre de la base de datos, la conexión con la base y el cursor 
+    def __init__(self, nombre_db="almacenamiento.db"):  # Se establece como atributos el nombre de la base de datos, la conexión con la base y el cursor 
         self.nombre_db = nombre_db
         self.conexion = sqlite3.connect(self.nombre_db)
         self.cursor = self.conexion.cursor()
