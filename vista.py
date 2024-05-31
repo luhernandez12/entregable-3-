@@ -1,7 +1,7 @@
 #vistas
 
 import sys 
-from PyQt5.QtWidgets import QApplication,QMainWindow, QDialog, QMessageBox,QLineEdit,QTextEdit
+from PyQt5.QtWidgets import QDialog, QApplication, QMessageBox, QLineEdit, QPushButton, QTableWidgetItem
 from PyQt5.QtGui import QRegExpValidator, QIntValidator
 from PyQt5.QtCore import Qt,QRegExp
 from PyQt5.uic import loadUi
@@ -56,6 +56,7 @@ class VentanaMenu(QDialog):
         self.boton_agregar.clicked.connect(self.agregar_paciente)
         self.boton_buscar.clicked.connect(self.tabla)
         self.boton_eliminar.clicked.connect(self.eliminar_pac)
+        self.tabla()
     
 
     def abrir_ventana_ingresar(self):
@@ -93,16 +94,18 @@ class VentanaMenu(QDialog):
                 msgBox.setIcon(QMessageBox.information)
                 msgBox.setText("La id ya existe")
     
-    def leer_pacientes(self):
-        self.listaPacientes = self.vetController.buscar_paciente()
-    def filterPets(self):
-        buscar = self.buscar_paciente.text()
-        self.listaPacientes = self.vetController.buscar_paciente(buscar)
-        self.tabla()
+    # def leer_pacientes(self):
+    #     self.listaPacientes = self.vetController.buscar_paciente()
+    # def filterPets(self):
+    #     buscar = self.buscar_paciente.text()
         
-    def tableUpdate(self):
+    #     self.tabla()
+        
+    def tabla(self):
+        buscar_n=self.buscar_paciente.text()
+        self.listaPacientes = self.vetController.buscar_paciente(buscar_n)
         self.tabla_eliminar.setRowCount(len(self.listaPacientes)) 
-        self.tabla_eliminar.setColumnCount(5) 
+        self.tabla_eliminar.setColumnCount(4) 
         columnas = ["ID", "Nombre", "Apellido", "Edad"]
         columnLayout = ['id','nombre','apellido','edad']
         self.tabla_eliminar.setHorizontalHeaderLabels(columnas)
