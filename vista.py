@@ -59,14 +59,16 @@ class VentanaMenu(QDialog):
     def abrir_ventana_eliminar(self):
         ventana_eliminar= self.stackedWidget.setCurrentIndex(1) 
     def abrir_ventana_login(self):
-        ventana_login=ventanaLogin()
+        ventana_login=self.ventanaLogin()
         ventana_login.show()
        
     
     
 
 app=QApplication(sys.argv)
-mi_vista=VentanaMenu()
+
+mi_vista2=VentanaMenu()
 mi_vista.show()
+
 
 sys.exit(app.exec())

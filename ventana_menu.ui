@@ -109,9 +109,13 @@ background-color: rgb(170, 170, 255);</string>
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
         <widget class="QStackedWidget" name="stackedWidget">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
+         </property>
          <property name="currentIndex">
           <number>0</number>
          </property>
+         <widget class="QWidget" name="page"/>
          <widget class="QWidget" name="pagina_agregar">
           <property name="styleSheet">
            <string notr="true">background-color: rgb(170, 170, 255);</string>
