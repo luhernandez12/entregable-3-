@@ -25,7 +25,7 @@ class ventanaLogin(QMainWindow):
     def validardatos(self):
         username = self.usuario.text()
         password = self.password.text()
-        existe = self.userController.log_in(usuario, password)
+        existe = self.userController.log_in(username, password)
         if isinstance(existe, tuple):
             self.vetView = VentanaMenu()
             self.vetView.show()
@@ -55,12 +55,15 @@ class VentanaMenu(QDialog):
         self.menu_salir.clicked.connect(self.abrir_ventana_login)
 
     def abrir_ventana_ingresar(self):
-        ventana_ingresar=self.stackedWidget.setCurrentIndex(0)  
+        ventana_ingresar=self.stackedWidget.setCurrentIndex(1)
+
     def abrir_ventana_eliminar(self):
-        ventana_eliminar= self.stackedWidget.setCurrentIndex(1) 
-    def abrir_ventana_login(self):
-        ventana_login=self.ventanaLogin()
-        ventana_login.show()
+        ventana_eliminar= self.stackedWidget.setCurrentIndex(2) 
+    def abrir_ventana_logout(self):
+        self.ventanaL=ventanaLogin()
+        self.ventanaL.show()
+        self.close()
+
        
     
     
@@ -68,7 +71,7 @@ class VentanaMenu(QDialog):
 app=QApplication(sys.argv)
 
 mi_vista2=VentanaMenu()
-mi_vista.show()
+mi_vista2.show()
 
 
 sys.exit(app.exec())
