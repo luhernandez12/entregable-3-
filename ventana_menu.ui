@@ -48,6 +48,43 @@
      <number>0</number>
     </property>
     <item>
+     <widget class="QFrame" name="frame_4">
+      <property name="styleSheet">
+       <string notr="true">
+background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QPushButton" name="menu_agregar">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(170, 170, 255);</string>
+         </property>
+         <property name="text">
+          <string>Agregar</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="menu_eliminar">
+         <property name="styleSheet">
+          <string notr="true">
+background-color: rgb(170, 170, 255);</string>
+         </property>
+         <property name="text">
+          <string>Eliminar </string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
      <widget class="QFrame" name="frame_paginas">
       <property name="styleSheet">
        <string notr="true">background-color: rgb(255, 255, 255);</string>
@@ -147,7 +184,7 @@ background-color: rgb(255, 255, 255);</string>
             <rect>
              <x>10</x>
              <y>50</y>
-             <width>511</width>
+             <width>421</width>
              <height>221</height>
             </rect>
            </property>
@@ -177,7 +214,7 @@ background-color: rgb(255, 255, 255);</string>
             <rect>
              <x>20</x>
              <y>10</y>
-             <width>461</width>
+             <width>381</width>
              <height>31</height>
             </rect>
            </property>
@@ -210,7 +247,7 @@ background-color: rgb(255, 255, 255);</string>
             <rect>
              <x>20</x>
              <y>280</y>
-             <width>501</width>
+             <width>381</width>
              <height>41</height>
             </rect>
            </property>

@@ -42,35 +42,35 @@ class ventanaLogin(QMainWindow):
         self.close()
 
 
-# class VentanaMenu(QDialog):
-#     def __init__(self,ppal=None):
-#         super().__init__(ppal)
-#         loadUi("ventana_menu.ui",self)
-#         self.__ventanaPadre=ppal
-#         self.setup()
+class VentanaMenu(QDialog):
+    def __init__(self,ppal=None):
+        super().__init__(ppal)
+        loadUi("ventana_menu.ui",self)
+        self.vetController = sistema_controlador()
+        self.setup()
 
-#     def setup(self):
-#         self.ingresar_pac.clicked.connect(self.abrir_ventana_ingresar)
-#         self.eliminar_pac.clicked.connect(self.abrir_ventana_eliminar)
-#         self.salida.clicked.connect(self.abrir_ventana_principal)
+    def setup(self):
+        self.ingresar_pac.clicked.connect(self.abrir_ventana_ingresar)
+        self.eliminar_pac.clicked.connect(self.abrir_ventana_eliminar)
+        self.salida.clicked.connect(self.abrir_ventana_principal)
     
-#     def abrir_ventana_ingresar(self):
-#         ventana_ingresar= VentanaIngreso(self)
-#         self.hide()
-#         ventana_ingresar.show()
+    def abrir_ventana_ingresar(self):
+        ventana_ingresar= VentanaIngreso(self)
+        self.hide()
+        ventana_ingresar.show()
     
-#     def abrir_ventana_eliminar(self):
-#         ventana_eliminar= VentanaEliminar(self)
-#         self.hide()
-#         ventana_eliminar.show()
+    def abrir_ventana_eliminar(self):
+        ventana_eliminar= VentanaEliminar(self)
+        self.hide()
+        ventana_eliminar.show()
     
-#     def abrir_ventana_principal(self):
-#         ventana_principal= VentanaMenu(self)
-#         self.hide()
-#         ventana_buscar.show()
+    def abrir_ventana_principal(self):
+        ventana_principal= VentanaMenu(self)
+        self.hide()
+        ventana_buscar.show()
 
-#     def setControlador(self,c):
-#         self.__miCoordinador = c
+    def setControlador(self,c):
+        self.__miCoordinador = c
 
 # app=QApplication(sys.argv)
 # mi_vista=ventanaLogin()
