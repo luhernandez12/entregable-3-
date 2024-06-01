@@ -13,8 +13,8 @@ class ventanaLogin(QMainWindow):
         super().__init__()
         loadUi("ventana_ingreso.ui",self)
         self.userControler=login_controlador()
-        self.usuario.setValidator(QRegExpValidator(QRegExp("[a-zA-Z ]+")))
-        self.password.setValidator(QIntValidator())
+        # self.usuario.setValidator(QRegExpValidator(QRegExp("[a-zA-Z ]+")))
+        # self.password.setValidator(QIntValidator())
         self.setup()
 
     def setup(self):
@@ -25,11 +25,12 @@ class ventanaLogin(QMainWindow):
     def validardatos(self):
         username = self.usuario.text()
         password = self.password.text()
-        existe = self.userController.log_in(username, password)
+        existe = self.userControler.log_in(username, password)
         if isinstance(existe, tuple):
             self.vetView = VentanaMenu()
             self.vetView.show()
-            self.close()
+            
+            
         elif existe == 0:
             msgBox = QMessageBox()
             msgBox.setIcon(QMessageBox.Warning)
@@ -55,13 +56,18 @@ class VentanaMenu(QDialog):
         self.boton_agregar.clicked.connect(self.agregar_paciente)
         self.boton_buscar.clicked.connect(self.tabla)
         self.boton_eliminar.clicked.connect(self.eliminar_pac)
+        self.boton_menu.clicked.connect(self.abrir_ventana_menu)
         self.tabla()
     
+    def abrir_ventana_menu(self):
+        ventana_menu=self.stackedWidget.setCurrentIndex(0)   
 
     def abrir_ventana_ingresar(self):
         ventana_ingresar=self.stackedWidget.setCurrentIndex(1)
+        
     def abrir_ventana_eliminar(self):
         ventana_eliminar= self.stackedWidget.setCurrentIndex(2) 
+        
     def abrir_ventana_logout(self):
         self.ventanaL=ventanaLogin()
         self.ventanaL.show()

@@ -30,25 +30,27 @@ class Paciente:
     def asignarId(self,i):
         self.__id=i
 
-class LoginModelo():
-    def __init__(self,user="usuarios.json"):
-        self.user=user
+class LoginModelo:
+    def __init__(self, user="usuarios.json"):
+        self.user = user
         self.load()
     
     def load(self):
         try:
-            with open (self.user,'r') as file:
-                self.usuario=json.load(file)
-        except FileExistsError:
-            self.users=[]
-            print("No hay usuarios ")
-    
-    def existe(self, usuario,password ):
-       for i in self.usuario:
-            if i["usuario"]==usuario and i["password"]==password:
-                return 1    
-            else:
-                return 2
+            with open(self.user, 'r') as file:
+                self.usuario = json.load(file)
+        except FileNotFoundError:
+            self.usuario = []
+            print("No hay usuarios")
+
+    def existe(self, usuario_1, password):
+        try:
+            for i in self.usuario:
+                if i['usuario'] == usuario_1 and i['password'] == password:
+                    return (1, f'{usuario_1} bienvenido')
+            return 0
+        except TypeError:
+            return 2
 
 
 class Sistema:

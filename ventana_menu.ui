@@ -61,6 +61,13 @@ background-color: rgb(255, 255, 255);</string>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
+        <widget class="QPushButton" name="boton_menu">
+         <property name="text">
+          <string>Menu</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QPushButton" name="menu_agregar">
          <property name="styleSheet">
           <string notr="true">background-color: rgb(170, 170, 255);</string>
@@ -113,7 +120,7 @@ background-color: rgb(170, 170, 255);</string>
           <string notr="true">background-color: rgb(255, 255, 255);</string>
          </property>
          <property name="currentIndex">
-          <number>2</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="page"/>
          <widget class="QWidget" name="pagina_agregar">
