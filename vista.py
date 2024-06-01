@@ -87,6 +87,8 @@ class VentanaMenu(QDialog):
             msgBox.exec()
         else:
             isUnique = self.vetController.asignar_paciente(nombre,apellido,edad,iden)
+            self.abrir_ventana_menu()
+            
             if not isUnique:
                 msgBox = QMessageBox()
                 msgBox.setIcon(QMessageBox.Warning)
@@ -94,10 +96,10 @@ class VentanaMenu(QDialog):
                 msgBox.setWindowTitle('Id repetida')
                 msgBox.setStandardButtons(QMessageBox.Ok)
                 msgBox.exec()
-            else:
-                msgBox = QMessageBox()
-                msgBox.setIcon(QMessageBox.information)
-                msgBox.setText("La id ya existe")
+            # else:
+            #     msgBox = QMessageBox()
+            #     msgBox.setIcon(QMessageBox.information)
+            #     msgBox.setText("La id ya existe")
     
         
     def tabla(self):
@@ -127,10 +129,12 @@ class VentanaMenu(QDialog):
     def eliminar_pac(self):
         iden=self.id_eliminar.text()
         r=self.vetController.eliminar_pac(iden)
-        if r==True:
-            msgBox = QMessageBox()
-            msgBox.setIcon(QMessageBox.information)
-            msgBox.setText("Se elimino conrrectamente ")
+        self.abrir_ventana_menu()
+        # if r==True:
+        #     msgBox = QMessageBox()
+        #     msgBox.setIcon(QMessageBox.information)
+        #     msgBox.setText("Se elimino conrrectamente ")
+            
 
 
 
