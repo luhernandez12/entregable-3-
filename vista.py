@@ -1,4 +1,3 @@
-#vistas
 
 import sys 
 from PyQt5.QtWidgets import QDialog, QApplication, QMessageBox, QLineEdit, QPushButton, QTableWidgetItem
@@ -41,7 +40,6 @@ class ventanaLogin(QMainWindow):
 
     def closeOption(self):
         self.close()
-
 class VentanaMenu(QDialog):
     def __init__(self,ppal=None):
         super().__init__(ppal)
@@ -135,18 +133,14 @@ class VentanaMenu(QDialog):
         #     msgBox.setIcon(QMessageBox.information)
         #     msgBox.setText("Se elimino conrrectamente ")
             
-
-
-
+#Implementacion 
     
+def main(): 
+    app=QApplication(sys.argv)
+    mi_vista2=ventanaLogin()
+    mi_vista2.show()
+    sys.exit(app.exec())
 
+if __name__ == '__main__':
+    main()
     
-
-       
-    
-    
-
-app=QApplication(sys.argv)
-mi_vista2=ventanaLogin()
-mi_vista2.show()
-sys.exit(app.exec())

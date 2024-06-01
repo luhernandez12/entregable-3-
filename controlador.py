@@ -1,5 +1,6 @@
 from modelo import* 
 
+#Clase controlador 
 class login_controlador:
     def __init__(self):
         self.user_model=LoginModelo()
@@ -8,6 +9,7 @@ class login_controlador:
         result = self.user_model.existe(username, password)
         return result
 
+#Clase sistema
 class sistema_controlador:
     def __init__(self, model = Sistema()):
         self.model = model

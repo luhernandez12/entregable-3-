@@ -52,7 +52,6 @@ class LoginModelo:
         except TypeError:
             return 2
 
-
 class Sistema:
     def __init__(self, nombre_db="almacenamiento.db"):  # Se establece como atributos el nombre de la base de datos, la conexión con la base y el cursor 
         self.nombre_db = nombre_db
@@ -135,12 +134,4 @@ class Sistema:
             finally:
                 if self.cursor:
                     self.cursor.close()
-
-# s=Sistema() 
-# s.asignar_paciente("maria","quin","11","19")
-
-
-
-
-
 

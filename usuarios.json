@@ -1,7 +1,7 @@
 [
     {
-        "usuario":"user",
-        "password":"123"
+        "usuario":"admin123",
+        "password":"contrasena123"
     },
     {
         "usuario":"userdos",
